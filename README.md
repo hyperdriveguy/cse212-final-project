@@ -19,13 +19,13 @@ This repository includes markdown files meant to be read in order starting from 
     * Preformance
     * Example - Grocery list
     * Try it yourself - Class attendance
-3. Binary Search Trees
-    * Introduction
-        * Nodes and Linked Lists
-        * Binary Trees
-        * Binary Comparison for Searches
+3. [Binary Search Trees](3-binary-search-trees.md)
+    * [Introduction](3-binary-search-trees.md#introduction)
+        * [Nodes and Linked Lists](3-binary-search-trees.md#nodes-and-linked-lists)
+        * [Binary Trees](3-binary-search-trees.md#binary-trees)
+        * [Binary Comparison for Searches](3-binary-search-trees.md#binary-comparison-for-searches)
+        * Balancing trees
         * A note on Recursion
-    * Diagram
     * Preformance
     * Example - Name Search Tree
     * Try it yourself - BST containing hashes
