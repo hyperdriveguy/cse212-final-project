@@ -5,6 +5,7 @@ This repository includes markdown files meant to be read in order starting from 
 0. Welcome
     * Introduction
     * Contact
+    * Licenses
 1. Queues
     * Introduction
     * Diagram
@@ -13,15 +14,18 @@ This repository includes markdown files meant to be read in order starting from 
     * Try it yourself - PS5 backorders
 2. Sets
     * Introduction
-    * A note on Maps
+        * A note on Maps
     * Diagram
     * Preformance
     * Example - Grocery list
     * Try it yourself - Class attendance
 3. Binary Search Trees
     * Introduction
-    * A note on Recursion
+        * Nodes and Linked Lists
+        * Binary Trees
+        * Binary Comparison for Searches
+        * A note on Recursion
     * Diagram
     * Preformance
-    * Example - Family Tree
-    * Try it yourself - Hash tree
+    * Example - Name Search Tree
+    * Try it yourself - BST containing hashes
