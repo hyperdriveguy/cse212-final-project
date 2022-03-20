@@ -24,7 +24,7 @@ This repository includes markdown files meant to be read in order starting from 
         * [Nodes and Linked Lists](3-binary-search-trees.md#nodes-and-linked-lists)
         * [Binary Trees](3-binary-search-trees.md#binary-trees)
         * [Binary Comparison for Searches](3-binary-search-trees.md#binary-comparison-for-searches)
-        * Balancing trees
+        * [Tree Balancing](3-binary-search-trees.md#tree-balancing)
         * A note on Recursion
     * Preformance
     * Example - Name Search Tree

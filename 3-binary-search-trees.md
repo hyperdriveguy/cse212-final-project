@@ -49,4 +49,17 @@ Let's try adding a value of **15**.
 
 ![diagram showing traversal of tree and addition of new node](pictures/bst-add-node-example.drawio.svg)
 
+### Tree Balancing
 
+In order to maintain optimial performance, a binary search tree must be *balanced*.
+The diagrams in the above section show a balanced tree. But what does an unbalanced tree look like?
+
+![diagram of an unbalanced tree](pictures/unbalanced-bst.drawio.svg)
+
+Look familiar? Worst case scenario will effectively become a linked list, losing all the preformance
+benefits of a BST.
+
+There a few different ways to balance a tree. If a tree is constantly adding data, an
+[AVL Tree](https://en.wikipedia.org/wiki/AVL_tree) may be an ideal solution:
+
+[AVL Tree GIF](https://upload.wikimedia.org/wikipedia/commons/f/fd/AVL_Tree_Example.gif)
