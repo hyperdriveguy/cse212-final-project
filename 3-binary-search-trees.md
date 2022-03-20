@@ -60,6 +60,9 @@ Look familiar? Worst case scenario will effectively become a linked list, losing
 benefits of a BST.
 
 There a few different ways to balance a tree. If a tree is constantly adding data, an
-[AVL Tree](https://en.wikipedia.org/wiki/AVL_tree) may be an ideal solution:
+[AVL Tree](https://en.wikipedia.org/wiki/AVL_tree) or other self-balancing may be an ideal solution:
 
-[AVL Tree GIF](https://upload.wikimedia.org/wikipedia/commons/f/fd/AVL_Tree_Example.gif)
+![AVL Tree GIF](https://upload.wikimedia.org/wikipedia/commons/f/fd/AVL_Tree_Example.gif)
+
+(Image licensed under CC-BY-SA 4.0 from
+[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:AVL_Tree_Example.gif))
