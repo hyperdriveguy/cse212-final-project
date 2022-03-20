@@ -25,7 +25,7 @@ This repository includes markdown files meant to be read in order starting from 
         * [Binary Trees](3-binary-search-trees.md#binary-trees)
         * [Binary Comparison for Searches](3-binary-search-trees.md#binary-comparison-for-searches)
         * [Tree Balancing](3-binary-search-trees.md#tree-balancing)
-        * A note on Recursion
-    * Preformance
+        * [A Note on Recursion](3-binary-search-trees.md#a-note-on-recursion)
+    * [Preformance](3-binary-search-trees.md#preformance)
     * Example - Name Search Tree
     * Try it yourself - BST containing hashes

@@ -66,3 +66,28 @@ There a few different ways to balance a tree. If a tree is constantly adding dat
 
 (Image licensed under CC-BY-SA 4.0 from
 [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:AVL_Tree_Example.gif))
+
+Another way to balance a tree is to extract all data into a sorted list and choose the middle node
+and split the data left and right until all nodes are accounted for. The most effective way to do this
+is using [recursion](#a-note-on-recursion).
+
+### A Note on Recursion
+
+Binary Search Trees preform some operations using recursive functions or methods.
+This tutorial assumes you know what recursion is and how to use it.
+If you need a refresher, check out [here](https://en.wikipedia.org/wiki/Recursion_(computer_science))
+or a preferred resource of your choosing.
+
+## Preformance
+
+|  Common Operation  |                                         Description                                       | Performance |
+|:------------------:|:-----------------------------------------------------------------------------------------:|:-----------:|
+| insert(value)      | Insert a value into the BST.                                                              | O(log n)    |
+| remove(value)      | Remove a value from the BST.                                                              | O(log n)    |
+| contains(value)    | Determine if a value is in the BST.                                                       | O(log n)    |
+| traverse_forward() | Visit all nodes from smallest to largest.                                                 | O(n)        |
+| traverse_reverse() | Visit all nodes from largest to smallest.                                                 | O(n)        |
+| height(node)       | Get the height of the tree from that specific node.                                       | O(n)        |
+| size()             | Return the size of the BST.                                                               | O(1)        |
+| empty()            | Returns True if the root node is empty. This can also be done by checking the size for 0. | O(1)        |
+
