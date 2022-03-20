@@ -80,14 +80,58 @@ or a preferred resource of your choosing.
 
 ## Preformance
 
-|  Common Operation  |                                         Description                                       | Performance |
+|  Common Operation  |                                        Description                                        | Performance |
 |:------------------:|:-----------------------------------------------------------------------------------------:|:-----------:|
 | insert(value)      | Insert a value into the BST.                                                              | O(log n)    |
 | remove(value)      | Remove a value from the BST.                                                              | O(log n)    |
-| contains(value)    | Determine if a value is in the BST.                                                       | O(log n)    |
+| contains(value)    | Determine if a value is contained in a node in the BST.                                   | O(log n)    |
 | traverse_forward() | Visit all nodes from smallest to largest.                                                 | O(n)        |
 | traverse_reverse() | Visit all nodes from largest to smallest.                                                 | O(n)        |
-| height(node)       | Get the height of the tree from that specific node.                                       | O(n)        |
+| height(node)       | Get the height of the tree from a specific node.                                          | O(n)        |
 | size()             | Return the size of the BST.                                                               | O(1)        |
 | empty()            | Returns True if the root node is empty. This can also be done by checking the size for 0. | O(1)        |
 
+## Example - Name Search Tree
+
+All of the demonstrations of BSTs so far have simply shown integers.
+However, as long as the data we want to insert into the tree can compared using less than
+and greater than operators, we can insert other types of data into the tree.
+
+We can take advantage of the fact that
+[Python can compare strings this way](https://docs.python.org/3/tutorial/datastructures.html#comparing-sequences-and-other-types)
+to build a BST like so:
+
+```python
+# Name Search Tree Example
+name_bst = BST()
+name_bst.insert('Ronald')
+name_bst.insert('Dylan')
+name_bst.insert('Ana')
+name_bst.insert('Bruh')
+name_bst.insert('Victor')
+name_bst.insert('Willard')
+name_bst.insert('Thomas')
+
+# True
+print('Bruh' in name_bst)
+
+# ['Ana', 'Bruh', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard']
+print(name_bst.traverse_forward())
+
+name_bst.remove('Bruh')
+
+# ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard']
+print(name_bst.traverse_forward())
+
+# 3
+print(name_bst.height())
+
+# 6
+print(name_bst.size)
+```
+
+## Try it yourself - BST Containing Hashes
+
+Open the [try it yourself](src/tryit_bst_with_hashes.py) and complete
+the challenges noted in the comments. Your output should match the comments
+for the Name Search Tree Example.
