@@ -69,7 +69,7 @@ class BST:
 
     def _contains(self, value, node):
         """
-        This funciton will search for a node that contains
+        This functon will search for a node that contains
         'data'.  The current sub-tree being search is
         represented by 'node'.  This function is intended
         to be called the first time by the __contains__ function.
