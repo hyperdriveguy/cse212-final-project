@@ -12,9 +12,9 @@ This repository includes markdown files meant to be read in order starting from 
     * Preformance
     * Example - Grocery store checkout line
     * Try it yourself - PS5 backorders
-2. Sets
-    * Introduction
-        * A note on Maps
+2. [Sets](2-sets.md#sets)
+    * [Introduction](2-sets.md#introduction)
+        * [A note on Maps](2-sets.md#a-note-on-maps)
     * Diagram
     * Preformance
     * Example - Grocery list
