@@ -22,6 +22,7 @@ Maps are very common; in fact it is the basis of some general data storage forma
 such as the JSON format.
 
 ## Diagram
+
 Behind the scenes, the backing data structure of a set is made up of an array or
 list. Where the object is placed in the backing array depends on the hash of the
 object being placed in the array. We can take the modulo of the hash in relation to
@@ -48,6 +49,7 @@ changed, affecting the modulo value to be applied to the hashes.
 ![Chaining example](pictures/set-diagram-chaining.drawio.svg)
 
 ## Preformance
+
 | Common Set Operation |               Description              | Performance (assuming good conflict resolution) |
 |:--------------------:|:--------------------------------------:|:-----------------------------------------------:|
 |      add(value)      |         Adds "value" to the set        |                       O(1)                      |
@@ -56,5 +58,34 @@ changed, affecting the modulo value to be applied to the hashes.
 |        size()        | Returns the number of items in the set |                       O(1)                      |
 
 ## Example - Grocery List
+
 ```python
+#Initialize the set
+grocery_list = set()
+
+# I need carrots and spinach
+grocery_list.add('carrots')
+grocery_list.add('spinach')
+
+# Actually, I need lettuce, not spinach
+grocery_list.remove('spinach')
+grocery_list.add('lettuce')
+
+# 2
+print(len(grocery_list))
+
+# carrots, lettuce
+print(grocery_list)
+
+# I really need lettuce and hot dogs
+grocery_list.add('lettuce')
+grocery_list.add('hot dogs')
+
+# carrots, lettuce, hot dogs
+print(grocery_list)
 ```
+
+## Try it yourself - Class attendance
+
+Open the [try it yourself](src/tryit_sets.py) and complete the challenges noted in
+the comments. Your output should match the comments in the tests section.
