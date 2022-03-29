@@ -14,11 +14,12 @@ This repository includes markdown files meant to be read in order starting from 
     * Try it yourself - PS5 backorders
 2. [Sets](2-sets.md#sets)
     * [Introduction](2-sets.md#introduction)
+        * [Unions and Intersections](2-sets.md#unions-and-intersections)
         * [A note on Maps](2-sets.md#a-note-on-maps)
-    * Diagram
-    * Preformance
-    * Example - Grocery list
-    * Try it yourself - Class attendance
+    * [Diagram](2-sets.md#diagram)
+    * [Preformance](2-sets.md#preformance)
+    * [Example - Grocery list](2-sets.md#example---grocery-list)
+    * [Try it yourself - Class attendance](2-sets.md#try-it-yourself---class-attendance)
 3. [Binary Search Trees](3-binary-search-trees.md)
     * [Introduction](3-binary-search-trees.md#introduction)
         * [Nodes and Linked Lists](3-binary-search-trees.md#nodes-and-linked-lists)

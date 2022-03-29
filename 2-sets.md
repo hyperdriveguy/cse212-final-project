@@ -14,6 +14,19 @@ the hash can be manipulated to determine a static location under the hood.
 When all is said and done, common operations such as adding, removing, and
 checking for membership can be done in O(1) time.
 
+### Unions and Intersections
+
+There are additional operations that take advantage of some of the unique
+characteristics of sets: *unions* and *intersections*.
+
+Unions combine two different sets, discarding any duplicates that might appear
+from combining sets. For example, combining `{1,2,3,4,5}` and `{4,5,6,7,8}`
+would yield `{1,2,3,4,5,6,7,8}`.
+
+Intersections find the values that two sets have in common. For example, comparing
+`{1,2,3,4,5}` and `{4,5,6,7,8}` would yeild `{4,5}`.
+
+
 ### A note on Maps
 
 A data structure that expands on sets is a Map or Dictionary. These types store

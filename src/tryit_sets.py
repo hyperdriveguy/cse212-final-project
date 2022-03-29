@@ -26,6 +26,21 @@ print('Bruce Wayne' in attendance)
 # Test - Added name should only appear once
 print(attendance)
 
+# Challenge - Get the number of total students using a union
+total = 0
+
+
+# Test - print total number of students
+# 13
+print(total)
+
+# Challenge - use an intersection to check who is in both classes
+
+
+# Test - print who is in both classes
+# {'La-a', 'Leet'}
+print(both_classes)
+
 # Clear attendance
 attendance = set()
 
