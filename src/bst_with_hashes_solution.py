@@ -1,5 +1,8 @@
 """Demonstrate the use and balancing of a BST.
 """
+from functools import partial
+
+
 class BST:
     """Binary Search Tree Class
 
@@ -66,7 +69,42 @@ class BST:
         Removal of a node will require cleanup, especially if
         that node has children.
         """
-        pass
+        if self.root is None:
+            return
+        self._remove(value, self.root, None)
+
+
+    def _remove(self, data, node, parent):
+        # Data not in tree
+        if node is None:
+            return
+        if data < node.data:
+            self._remove(data, node.less_than, node)
+        elif data > node.data:
+            self._remove(data, node.greater_than, node)
+        # Node is our target for removal
+        else:
+            # Removal of leaf nodes
+            if node.less_than is None and node.greater_than is None:
+                self._disown_child(data, parent)
+            # Remove root node
+            if node == self.root:
+                target_root = self._get_new_root(node.less_than)
+                self._disown_child(data, None)
+                target_root.less_than = self.root.less_than
+                target_root.greater_than = self.root.greater_than
+
+    @staticmethod
+    def _disown_child(data, parent):
+        if parent.less_than == data:
+            parent.less_than = None
+        elif parent.greater_than == data:
+            parent.greater_than = None
+
+    def _get_new_root(self, node, parent):
+        if node.greater_than is None:
+            return node
+        return self._get_new_root(node.greater_than)
 
     def __contains__(self, value):
         """
@@ -239,10 +277,7 @@ class BST:
         """
         pass
 
-    def _detect_imbalance(self):
-        pass
-
-    # Rebalance starting from a specific node!
+    # Rebalance starting from a specific node! (Optional)
     # Make sure to call this method on node insertion or removal.
     def _rebalance_subtree(self, node):
         pass
@@ -262,6 +297,8 @@ def implement_basic_bst_hash_tree():
     """
     pass
 
+
+# All tests are below this point
 
 # Name Search Tree Example
 name_bst = BST()
