@@ -18,7 +18,7 @@ attendance.add('Joe')
 attendance.add('Squilliam')
 
 # Test - should always be False
-print('Pater Purker' in attendance)
+print(len(attendance.intersection(parkour)) > 0)
 
 # Challenge
 # Add a name to the current attendance set from the chemistry class twice

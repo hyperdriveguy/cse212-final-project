@@ -24,7 +24,7 @@ from combining sets. For example, combining `{1,2,3,4,5}` and `{4,5,6,7,8}`
 would yield `{1,2,3,4,5,6,7,8}`.
 
 Intersections find the values that two sets have in common. For example, comparing
-`{1,2,3,4,5}` and `{4,5,6,7,8}` would yeild `{4,5}`.
+`{1,2,3,4,5}` and `{4,5,6,7,8}` would yield `{4,5}`.
 
 
 ### A note on Maps
