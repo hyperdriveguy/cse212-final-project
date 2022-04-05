@@ -1,5 +1,6 @@
 """Demonstrate the use and balancing of a BST.
 """
+from dataclasses import replace
 from functools import partial
 
 
@@ -62,7 +63,6 @@ class BST:
                 # recursively on the "greater than" sub-tree.
                 self._insert(data, node.greater_than)
 
-    # Implement the removal function!
     def remove(self, value):
         """Remove a node from the BST.
 
@@ -71,7 +71,12 @@ class BST:
         """
         if self.root is None:
             return
+        if self._size == 1:
+            self.root = None
+            self._size = 0
+            return
         self._remove(value, self.root, None)
+        self._size -= 1
 
 
     def _remove(self, data, node, parent):
@@ -86,25 +91,38 @@ class BST:
         else:
             # Removal of leaf nodes
             if node.less_than is None and node.greater_than is None:
-                self._disown_child(data, parent)
+                self._disown_child(node, parent)
             # Remove root node
-            if node == self.root:
-                target_root = self._get_new_root(node.less_than)
-                self._disown_child(data, None)
-                target_root.less_than = self.root.less_than
-                target_root.greater_than = self.root.greater_than
+            elif node == self.root:
+                new_root, new_root_parent = self._get_new_root(node.less_than, parent)
+                self._disown_child(new_root, new_root_parent)
+                new_root.less_than = self.root.less_than
+                new_root.greater_than = self.root.greater_than
+                self.root = new_root
+            # Remove node with only one child
+            elif node.less_than is None:
+                self._disown_child(node, parent, node.greater_than)
+            elif node.greater_than is None:
+                self._disown_child(node, parent, node.less_than)
+            # Removal of nodes with two children
+            else:
+                replacement_node, replacement_parent_node = self._get_new_root(node.less_than, node)
+                self._disown_child(replacement_node, replacement_parent_node)
+                self._disown_child(node, parent, replacement_node)
+                replacement_node.less_than = node.less_than
+                replacement_node.greater_than = node.greater_than
 
     @staticmethod
-    def _disown_child(data, parent):
-        if parent.less_than == data:
-            parent.less_than = None
-        elif parent.greater_than == data:
-            parent.greater_than = None
+    def _disown_child(node, parent, replacement=None):
+        if parent.less_than == node:
+            parent.less_than = replacement
+        elif parent.greater_than == node:
+            parent.greater_than = replacement
 
     def _get_new_root(self, node, parent):
         if node.greater_than is None:
-            return node
-        return self._get_new_root(node.greater_than)
+            return (node, parent)
+        return self._get_new_root(node.greater_than, node)
 
     def __contains__(self, value):
         """
@@ -268,7 +286,7 @@ class BST:
         """
         return self.root is None
 
-    # Implement full tree rebalancing!
+    # Implement full tree rebalancing! (Optional)
     def rebalance_tree(self):
         """Rebalance the whole tree.
 
@@ -284,14 +302,14 @@ class BST:
 
 
 def implement_basic_bst_hash_tree():
-    """Implement a BST that contains hashes of some objects.
-    Print the tree height.
-    After creating the tree, rebalance it using the rebalance_tree method.
+    """Implement a BST that contains hashes of some objects of your choice.
+    Add several hashes to the tree.
     Print the tree height.
     Remove at least one of the hashes in the tree.
-    Make sure the the removal method rebalances the subtree.
+    List the number of items in the tree.
     Print the tree height.
-    Finally, print out each node.
+    Print out each node in reverse order.
+    Finally, print out each node in order.
 
     Remember that Python has the builtin hash() function.
     """
@@ -312,34 +330,53 @@ name_bst.insert('Thomas')
 
 # True
 print('Bruh' in name_bst)
+assert 'Bruh' in name_bst
 
 # ['Ana', 'Bruh', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard']
 print(name_bst.traverse_forward())
+assert name_bst.traverse_forward() == \
+    ['Ana', 'Bruh', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard']
 
 name_bst.remove('Bruh')
 
 # ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard']
 print(name_bst.traverse_forward())
+assert name_bst.traverse_forward() == ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard']
 
 # 3
 print(name_bst.height())
+assert name_bst.height() == 3
 
 # 6
 print(name_bst.size)
+assert name_bst.size == 6
 
 name_bst.insert('Zester')
 name_bst.insert('Zilliam')
 
-# 5 or 4 if AVL balancing is implemented
+# 5 or 4 if AVL balancing is implemented, 7 if not (Optional)
+name_bst.rebalance_tree()
 print(name_bst.height())
+assert name_bst.height() > 4 and name_bst.height() < 7
 
-# ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard', 'Zester', 'Zilliam']
+name_bst.remove('Zester')
+
+# ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard', 'Zilliam']
 print(name_bst.traverse_forward())
+assert name_bst.traverse_forward() ==  \
+    ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard', 'Zilliam']
+
+name_bst.remove('Ronald')
+
+# ['Ana', 'Dylan', 'Thomas', 'Victor', 'Willard', 'Zilliam']
+print(name_bst.traverse_forward())
+assert name_bst.traverse_forward() == ['Ana', 'Dylan', 'Thomas', 'Victor', 'Willard', 'Zilliam']
 
 name_bst.rebalance_tree()
 
 # 4
 print(name_bst.height())
+assert name_bst.height() == 4
 
 
 # Run challenge code

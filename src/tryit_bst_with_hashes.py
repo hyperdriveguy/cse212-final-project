@@ -1,5 +1,9 @@
 """Demonstrate the use and balancing of a BST.
 """
+from dataclasses import replace
+from functools import partial
+
+
 class BST:
     """Binary Search Tree Class
 
@@ -20,7 +24,6 @@ class BST:
         self.root = None
         self.allow_dups = allow_dups
 
-    # Make it so the size is correctly tracked!
     def insert(self, value):
         """Insert a value into the BST.
 
@@ -28,10 +31,12 @@ class BST:
             value (any comparable): value to insert to BST
         """
         if self.root is None:
+            self._size += 1
             self.root = BST.Node(value)
         else:
             self._insert(value, self.root)
 
+    # Challenge: correctly track size when adding nodes
     def _insert(self, data, node):
         if data < node.data:
             # The data belongs on the "less than" side.
@@ -47,6 +52,7 @@ class BST:
             return
         else:
             # The data belongs on the "greater than" side.
+            # If duplicates are allowed, they will be put on this side.
             if node.greater_than is None:
                 # We found an empty spot
                 node.greater_than = BST.Node(data)
@@ -54,7 +60,61 @@ class BST:
                 # Need to keep looking. Call _insert
                 # recursively on the "greater than" sub-tree.
                 self._insert(data, node.greater_than)
-        self._size += 1
+
+    def remove(self, value):
+        """Remove a node from the BST.
+
+        Removal of a node will require cleanup, especially if
+        that node has children.
+        """
+        if self.root is None:
+            return
+        if self._size == 1:
+            self.root = None
+            self._size = 0
+            return
+        self._remove(value, self.root, None)
+        self._size -= 1
+
+
+    def _remove(self, data, node, parent):
+        # Data not in tree
+        if node is None:
+            return
+        if data < node.data:
+            self._remove(data, node.less_than, node)
+        elif data > node.data:
+            self._remove(data, node.greater_than, node)
+        # Node is our target for removal
+        else:
+            # Removal of leaf nodes
+            if node.less_than is None and node.greater_than is None:
+                self._disown_child(node, parent)
+            # Challenge: remove root node
+
+
+            # Challenge: remove node with only one child
+
+
+            # Removal of nodes with two children
+            else:
+                replacement_node, replacement_parent_node = self._get_new_root(node.less_than, node)
+                self._disown_child(replacement_node, replacement_parent_node)
+                self._disown_child(node, parent, replacement_node)
+                replacement_node.less_than = node.less_than
+                replacement_node.greater_than = node.greater_than
+
+    @staticmethod
+    def _disown_child(node, parent, replacement=None):
+        if parent.less_than == node:
+            parent.less_than = replacement
+        elif parent.greater_than == node:
+            parent.greater_than = replacement
+
+    def _get_new_root(self, node, parent):
+        if node.greater_than is None:
+            return (node, parent)
+        return self._get_new_root(node.greater_than, node)
 
     def __contains__(self, value):
         """
@@ -94,6 +154,7 @@ class BST:
         """
         yield from self._traverse_forward(self.root)
 
+    # Challenge: implement forward traversal through the tree
     def _traverse_forward(self, node):
         """
         Does a forward traversal (in-order traversal) through the
@@ -108,22 +169,8 @@ class BST:
 
         for value in my_bst:
             print(value)
-
-        The keyword 'yield' will return the value for the 'for' loop to
-	    use.  When the 'for' loop wants to get the next value, the code in
-	    this function will start back up where the last 'yield' returned a
-	    value.  The keyword 'yield from' is used when our generator function
-        needs to call another function for which a `yield` will be called.
-        In other words, the `yield` is delegated by the generator function
-        to another function.
-
-        This function is intended to be called the first time by
-        the __iter__ function.
         """
-        if node is not None:
-            yield from self._traverse_forward(node.less_than)
-            yield node.data
-            yield from self._traverse_forward(node.greater_than)
+        yield None
 
     def traverse_forward(self):
         """Visit all nodes from smallest to largest.
@@ -229,17 +276,7 @@ class BST:
         """
         return self.root is None
 
-
-    # Implement the removal function!
-    def remove(self, value):
-        """Remove a node from the BST.
-
-        Removal of a node will require cleanup, especially if
-        that node has children.
-        """
-        pass
-
-    # Implement full tree rebalancing!
+    # Implement full tree rebalancing! (Optional)
     def rebalance_tree(self):
         """Rebalance the whole tree.
 
@@ -248,63 +285,88 @@ class BST:
         """
         pass
 
-    # (Optional) Rebalance starting from a specific node!
+    # Rebalance starting from a specific node! (Optional)
+    # Make sure to call this method on node insertion or removal.
     def _rebalance_subtree(self, node):
         pass
 
 
 def implement_basic_bst_hash_tree():
-    """Implement a BST that contains hashes of some objects.
-    After creating the tree, rebalance it using the method above.
-    Remove one of the hashes in the tree.
-    Rebalance again.
-    Finally, print out each node.
+    """Implement a BST that contains hashes of some objects of your choice.
+    Add several hashes to the tree.
+    Print the tree height.
+    Remove at least one of the hashes in the tree.
+    List the number of items in the tree.
+    Print the tree height.
+    Print out each node in reverse order.
+    Finally, print out each node in order.
 
     Remember that Python has the builtin hash() function.
     """
     pass
 
 
+# All tests are below this point
+
 # Name Search Tree Example
 name_bst = BST()
 name_bst.insert('Ronald')
+name_bst.insert('Bruh')
 name_bst.insert('Dylan')
 name_bst.insert('Ana')
-name_bst.insert('Bruh')
 name_bst.insert('Victor')
 name_bst.insert('Willard')
 name_bst.insert('Thomas')
 
 # True
 print('Bruh' in name_bst)
+assert 'Bruh' in name_bst
 
 # ['Ana', 'Bruh', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard']
 print(name_bst.traverse_forward())
+assert name_bst.traverse_forward() == \
+    ['Ana', 'Bruh', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard']
 
 name_bst.remove('Bruh')
 
 # ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard']
 print(name_bst.traverse_forward())
+assert name_bst.traverse_forward() == ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard']
 
 # 3
 print(name_bst.height())
+assert name_bst.height() == 3
 
 # 6
 print(name_bst.size)
+assert name_bst.size == 6
 
 name_bst.insert('Zester')
 name_bst.insert('Zilliam')
 
-# 5
+# 5 or 4 if AVL balancing is implemented, 7 if not (Optional)
+name_bst.rebalance_tree()
 print(name_bst.height())
+assert name_bst.height() > 4 and name_bst.height() < 7
 
-# ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard', 'Zester', 'Zilliam']
+name_bst.remove('Zester')
+
+# ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard', 'Zilliam']
 print(name_bst.traverse_forward())
+assert name_bst.traverse_forward() ==  \
+    ['Ana', 'Dylan', 'Ronald', 'Thomas', 'Victor', 'Willard', 'Zilliam']
+
+name_bst.remove('Ronald')
+
+# ['Ana', 'Dylan', 'Thomas', 'Victor', 'Willard', 'Zilliam']
+print(name_bst.traverse_forward())
+assert name_bst.traverse_forward() == ['Ana', 'Dylan', 'Thomas', 'Victor', 'Willard', 'Zilliam']
 
 name_bst.rebalance_tree()
 
 # 4
 print(name_bst.height())
+assert name_bst.height() == 4
 
 
 # Run challenge code
