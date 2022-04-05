@@ -8,8 +8,8 @@ Sets have two major distinctive characteristics:
 2. Every item in them must be unique
 
 Taking advantage of these characteristics, a set implementation will *hash*
-an object given to it. A hash is a puesdo-unique value that can be thought
-of as a distinct signiature. Because the signiatures are generally unique enough,
+an object given to it. A hash is a pseudo-unique value that can be thought
+of as a distinct signature. Because the signatures are generally unique enough,
 the hash can be manipulated to determine a static location under the hood.
 When all is said and done, common operations such as adding, removing, and
 checking for membership can be done in O(1) time.
@@ -40,7 +40,7 @@ Behind the scenes, the backing data structure of a set is made up of an array or
 list. Where the object is placed in the backing array depends on the hash of the
 object being placed in the array. We can take the modulo of the hash in relation to
 the length of the backing list to ensure that we do not have to enlarge the list
-more than needed to accomodate a single value. (Note that the hash of an integer is
+more than needed to accommodate a single value. (Note that the hash of an integer is
 the same as the value of that integer in Python.)
 
 ![Set example](pictures/set-diagram.drawio.svg)
@@ -61,7 +61,7 @@ changed, affecting the modulo value to be applied to the hashes.
 
 ![Chaining example](pictures/set-diagram-chaining.drawio.svg)
 
-## Preformance
+## Performance
 
 | Common Set Operation |               Description              | Performance (assuming good conflict resolution) |
 |:--------------------:|:--------------------------------------:|:-----------------------------------------------:|

@@ -1,6 +1,6 @@
 # Binary Search Trees
 
-Binary Search Trees (BSTs) can be one of the harder data strutures to internalize.
+Binary Search Trees (BSTs) can be one of the harder data structures to internalize.
 To better understand them, we can look at other similar data structures that use individual
 concepts implemented in Binary Search Trees.
 
@@ -51,12 +51,12 @@ Let's try adding a value of **15**.
 
 ### Tree Balancing
 
-In order to maintain optimial performance, a binary search tree must be *balanced*.
+In order to maintain optimal performance, a binary search tree must be *balanced*.
 The diagrams in the above section show a balanced tree. But what does an unbalanced tree look like?
 
 ![diagram of an unbalanced tree](pictures/unbalanced-bst.drawio.svg)
 
-Look familiar? Worst case scenario will effectively become a linked list, losing all the preformance
+Look familiar? Worst case scenario will effectively become a linked list, losing all the performance
 benefits of a BST.
 
 There a few different ways to balance a tree. If a tree is constantly adding data, an
@@ -78,7 +78,7 @@ This tutorial assumes you know what recursion is and how to use it.
 If you need a refresher, check out [here](https://en.wikipedia.org/wiki/Recursion_(computer_science))
 or a preferred resource of your choosing.
 
-## Preformance
+## Performance
 
 |  Common Operation  |                                        Description                                        | Performance |
 |:------------------:|:-----------------------------------------------------------------------------------------:|:-----------:|
