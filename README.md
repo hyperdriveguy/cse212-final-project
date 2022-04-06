@@ -2,10 +2,10 @@
 This repository includes markdown files meant to be read in order starting from [0-welcome.md](0-welcome.md).
 
 ## Table of Contents
-0. Welcome
-    * Introduction
-    * Contact
-    * Licenses
+0. [Welcome](0-welcome.md#welcome)
+    * [Introduction](0-welcome.md#introduction)
+    * [Contact](0-welcome.md#contact)
+    * [Licenses](0-welcome.md#licenses)
 1. [Queues](1-queues.md#queues)
     * [Introduction](1-queues.md#introduction)
     * [Diagram](1-queues.md#diagram)
