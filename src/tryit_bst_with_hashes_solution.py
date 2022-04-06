@@ -1,8 +1,5 @@
 """Demonstrate the use and balancing of a BST.
 """
-from dataclasses import replace
-from functools import partial
-
 
 class BST:
     """Binary Search Tree Class
