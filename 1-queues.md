@@ -38,3 +38,78 @@ Notice how the queue preserves the order when enqueuing and dequeuing.
 
 [^1]: Performance is only O(n) time if the backing data structure is an array.
 Other backing structures, such as linked lists, can return values more efficiently.
+
+## Example - Amusement park line
+
+Let's take the example provided earlier and apply it to a code example.
+
+```python
+# Amusement park line example
+
+# Make a queue for a line with people in it
+ride_line = Queue(['Rider 1', 'Rider 2', 'Rider 3', 'Rider 4', 'Rider 5', 'Rider 6', 'Rider 7', 'Rider 8'])
+
+# A new rider entered the end of the line
+ride_line.enqueue('Rider 9')
+
+# ['Rider 1', 'Rider 2', 'Rider 3', 'Rider 4', 'Rider 5', 'Rider 6', 'Rider 7', 'Rider 8', 'Rider 9']
+print(ride_line)
+
+# The ride finished a cycle and has 5 open seats
+ride_line.dequeue()
+ride_line.dequeue()
+ride_line.dequeue()
+ride_line.dequeue()
+ride_line.dequeue()
+
+# ['Rider 6', 'Rider 7', 'Rider 8', 'Rider 9']
+print(ride_line)
+
+# A new rider entered the end of the line
+ride_line.enqueue('Rider 10')
+
+# The ride finished a cycle and has 5 open seats
+ride_line.dequeue()
+ride_line.dequeue()
+ride_line.dequeue()
+ride_line.dequeue()
+ride_line.dequeue()
+
+# []
+print(ride_line)
+
+# True
+print('Line empty:', ride_line.empty)
+
+# Two new riders at the end of the line
+ride_line.enqueue('Rider 11')
+ride_line.enqueue('Rider 12')
+
+# ['Rider 11', 'Rider 12']
+print(ride_line)
+
+# The ride finished a cycle and has 5 open seats
+ride_line.dequeue()
+ride_line.dequeue()
+# These should not return anything but still successfully run
+ride_line.dequeue()
+ride_line.dequeue()
+ride_line.dequeue()
+
+# []
+print(ride_line)
+```
+
+## Try it yourself - PS5 backorders
+
+The Playstation 5 is a widely sought after game console. As such, many companies
+have started paid memberships that give priority to members over others.
+In this challenge, you will use multiple "tiered" queues that supersede others
+whenever there are any customers in that queue.
+
+Open the [try it yourself](src/tryit_queues.py) and complete the challenges noted in
+the comments. Your output should match the comments in the tests section.
+
+The backing structure uses [deques](https://docs.python.org/3/library/collections.html#collections.deque).
+The it has convenient methods for building queues that allow both enqueue and dequeue operations to be
+done in O(1) time.

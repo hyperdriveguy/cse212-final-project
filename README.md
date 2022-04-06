@@ -6,12 +6,12 @@ This repository includes markdown files meant to be read in order starting from 
     * Introduction
     * Contact
     * Licenses
-1. Queues
-    * Introduction
-    * Diagram
-    * Performance
-    * Example - Amusement park line
-    * Try it yourself - PS5 backorders
+1. [Queues](1-queues.md#queues)
+    * [Introduction](1-queues.md#introduction)
+    * [Diagram](1-queues.md#diagram)
+    * [Performance](1-queues.md#performance)
+    * [Example - Amusement park line](1-queues.md#example---amusement-park-line)
+    * [Try it yourself - PS5 backorders](1-queues.md#try-it-yourself---ps5-backorders)
 2. [Sets](2-sets.md#sets)
     * [Introduction](2-sets.md#introduction)
         * [Unions and Intersections](2-sets.md#unions-and-intersections)
