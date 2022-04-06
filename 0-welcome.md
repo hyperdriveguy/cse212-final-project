@@ -33,6 +33,6 @@ My personal email is
 
 ## Licenses
 
-As previously mentioned, this project is free and open source under the MIT and
-CC-BY-SA 4.0 licenses. This means that the code and documentation may be used in
-educational and commercial contexts.
+As previously mentioned, this project is free and open source under the
+[MIT](src/LICENSE.md) and [CC-BY-SA 4.0](LICENSE.md) licenses.
+This means that the code and documentation may be used in educational and commercial contexts.
